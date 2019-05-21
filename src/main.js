@@ -56,7 +56,15 @@ You can place extensions at any spot in your room, and a spawn can use them rega
 
 /*
 Our new creep won’t move until we define the behavior for the role builder.
+
+Excellent, all the structures are filled with energy. It’s time to build somebody large!
+
 */
+
+
+//Game.spawns['Spawn1'].spawnCreep( [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE],'HarvesterBig',{ memory: { role: 'harvester' } } );
+
+
 
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
