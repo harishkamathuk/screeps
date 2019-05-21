@@ -78,17 +78,30 @@ In the next section, we’ll talk about how to set up the automatic manufacturin
 
 */
 
-var roleHarvester = require("role.harvester");
-var roleBuilder = require("role.builder");
+/*
+Tutorial section #4 Auto-spawning creeps
 
-module.exports.loop = function() {
-  for (var name in Game.creeps) {
-    var creep = Game.creeps[name];
-    if (creep.memory.role == "harvester") {
-      roleHarvester.run(creep);
+Until now, we have created new creeps directly in the console. It’s not a good idea to do it constantly since the very idea of Screeps is making your colony control itself. You will do well if you teach your spawn to produce creeps in the room on its own.
+
+This is a rather complicated topic and many players spend months perfecting and refining their auto-spawning code. But let’s try at least something simple and master some basic principles to start with.
+
+
+*/
+var roleHarvester = require('role.harvester');
+var roleUpgrader = require('role.upgrader');
+
+module.exports.loop = function () {
+
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log('Harvesters: ' + harvesters.length);
+
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if(creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+        }
+        if(creep.memory.role == 'upgrader') {
+            roleUpgrader.run(creep);
+        }
     }
-    if (creep.memory.role == "builder") {
-      roleBuilder.run(creep);
-    }
-  }
-};
+}
