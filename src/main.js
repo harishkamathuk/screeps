@@ -1,5 +1,7 @@
 // initialize creep on console
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1' );
+// Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester2' );
+
 
 module.exports.loop = function () {
     var creep = Game.creeps['Harvester1'];
