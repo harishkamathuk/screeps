@@ -101,6 +101,12 @@ Creep.suicide
 
 As you can see from the console, after we lacked one harvester, the spawn instantly started building a new one with a new name.
 
+
+
+
+Apart from creating new creeps after the death of old ones, there is another way to maintain the needed number of creeps: the method StructureSpawn.renewCreep. Creep aging is disabled in the Tutorial, so we recommend that you familiarize yourself with it on your own.
+
+
 */
 
 var roleHarvester = require('role.harvester');
