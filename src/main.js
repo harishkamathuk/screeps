@@ -2,7 +2,6 @@
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1' );
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester2' );
 
-
 /*
 In this Tutorial section we’ll talk about a key strategic object in your room: Room Controller. By controlling this invincible structure you can build facilities in the room. The higher the controller level, the more structures available to build.
 */
@@ -38,22 +37,17 @@ Our new creep won’t move until we define the behavior for the role builder.
 
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Builder1', { memory: { role: 'builder' } } );
 
+var roleHarvester = require("role.harvester");
+var roleBuilder = require("role.builder");
 
-var roleHarvester = require('role.harvester');
-var roleBuilder = require('role.builder');
-
-module.exports.loop = function () {
-
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
+module.exports.loop = function() {
+  for (var name in Game.creeps) {
+    var creep = Game.creeps[name];
+    if (creep.memory.role == "harvester") {
+      roleHarvester.run(creep);
     }
-}
-
-
-
+    if (creep.memory.role == "builder") {
+      roleBuilder.run(creep);
+    }
+  }
+};
