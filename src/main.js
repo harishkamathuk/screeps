@@ -85,8 +85,24 @@ Until now, we have created new creeps directly in the console. It’s not a good
 
 This is a rather complicated topic and many players spend months perfecting and refining their auto-spawning code. But let’s try at least something simple and master some basic principles to start with.
 
+*/
+/*
+
+Now let’s try to emulate a situation when one of our harvesters dies. You can now give the command suicide to the creep via the console or its properties panel on the right.
+
+Make one of the harvesters suicide.
+Documentation:
+Creep.suicide
+*/
+
+// Game.creeps['Harvester1'].suicide()
+
+/*
+
+As you can see from the console, after we lacked one harvester, the spawn instantly started building a new one with a new name.
 
 */
+
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 
