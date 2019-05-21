@@ -29,6 +29,9 @@ The second Controller level has 5 extensions available for you to build. This nu
 
 You can place extensions at any spot in your room, and a spawn can use them regardless of the distance. In this Tutorial we have already placed corresponding construction sites for your convenience.
 
+Our new creep won’t move until we define the behavior for the role builder.
+
+
 */
 
 // Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Builder1', { memory: { role: 'builder' } } );
