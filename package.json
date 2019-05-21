@@ -1,5 +1,7 @@
 {
   "name": "screeps",
   "version": "0.0.1",
-  "private": true
+  "private": true,
+  "keywords": [],
+  "description": "My screeps tutorial walk through"
 }
