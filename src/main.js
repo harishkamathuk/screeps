@@ -61,23 +61,34 @@ Excellent, all the structures are filled with energy. It’s time to build someb
 
 */
 
-
 //Game.spawns['Spawn1'].spawnCreep( [WORK,WORK,WORK,WORK,CARRY,MOVE,MOVE],'HarvesterBig',{ memory: { role: 'harvester' } } );
 
+/*
+Building this creep took energy from all storages and completely drained them.
 
+Now let’s select our creep and watch it work.
 
-var roleHarvester = require('role.harvester');
-var roleBuilder = require('role.builder');
+Click on the creep Harvester2.
 
-module.exports.loop = function () {
+As you can see on the right panel, this powerful creep harvests 8 energy units per tick. A few such creeps can completely drain an energy source before it refills thus giving your colony a maximum energy boost.
 
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
+Hence, by upgrading your Controller, constructing new extensions and more powerful creeps, you considerably improve the effectiveness of your colony work. Also, by replacing a lot of small creeps with fewer large ones, you save CPU resources on controlling them which is an important prerequisite to play in the online mode.
+
+In the next section, we’ll talk about how to set up the automatic manufacturing of new creeps.
+
+*/
+
+var roleHarvester = require("role.harvester");
+var roleBuilder = require("role.builder");
+
+module.exports.loop = function() {
+  for (var name in Game.creeps) {
+    var creep = Game.creeps[name];
+    if (creep.memory.role == "harvester") {
+      roleHarvester.run(creep);
     }
-}
+    if (creep.memory.role == "builder") {
+      roleBuilder.run(creep);
+    }
+  }
+};
