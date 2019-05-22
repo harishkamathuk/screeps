@@ -161,8 +161,6 @@ The enemy creep is eliminated and our colony can breathe easy. However, the inva
 
 */
 
-
-
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
@@ -170,6 +168,15 @@ var roleBuilder = require("role.builder");
 module.exports.loop = function() {
   var tower = Game.getObjectById("6222b1f9532e9deb3b312fa0");
   if (tower) {
+
+    var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+      filter: (structure) => structure.hits < structure.hitsMax
+    });
+    if(closestDamagedStructure) {
+      tower.repair(closestDamagedStructure);
+    }
+
+
     var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
     if (closestHostile) {
       tower.attack(closestHostile);
