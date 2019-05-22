@@ -108,6 +108,55 @@ Apart from creating new creeps after the death of old ones, there is another way
 
 
 */
+/*
+Tutorial Section #5 Defending your room
+
+The world of Screeps is not the safest place. Other players may have claims on your territory. Besides, your room may be raided by neutral NPC creeps occasionally. So you ought to think about your colony defense in order to develop it successfully.
+
+Documentation:
+Defending your room
+
+This hostile creep has come from the left entry and attacked your colony. It’s good that we have walls to restrain it temporarily. But they will fall sooner or later, so we need to deal with the problem.
+
+The surest way to fend off an attack is using the room Safe Mode. In safe mode, no other creep will be able to use any harmful methods in the room (but you’ll still be able to defend against strangers).
+
+The safe mode is activated via the room controller which should have activations available to use. Let’s spend one activation to turn it on in our room.
+
+Activate safe mode.
+Documentation:
+StructureController.activateSafeMode
+*/
+
+// Game.spawns['Spawn1'].room.controller.activateSafeMode();
+
+/*
+
+As you can see, the enemy creep stopped attacking the wall – its harmful methods are blocked. We recommend that you activate safe mode when your defenses fail.
+
+Now let’s cleanse the room from unwanted guests.
+*/
+
+/*
+
+Towers are the easiest way to actively defend a room. They use energy and can be targeted at any creep in a room to attack or heal it. The effect depends on the distance between the tower and the target.
+
+To start with, let’s lay a foundation for our new tower. You can set any place you wish inside the walls and place the construction site there with the help of the button “Construct” on the upper panel.
+
+Place the construction site for the tower (manually or using the code below).
+Documentation:
+StructureTower
+Room.createConstructionSite
+
+*/
+
+// Game.spawns['Spawn1'].room.createConstructionSite( 23, 22, STRUCTURE_TOWER );
+
+/*
+The creep Builder1 has immediately started the construction. Let’s wait until it finishes.
+*/
+
+
+
 
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
