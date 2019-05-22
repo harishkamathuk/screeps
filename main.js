@@ -17,7 +17,8 @@ Important: If you don’t upgrade your Controller within 20,000 game ticks, it l
 */
 
 /*
-Tutorial - section #3
+Tutorial - section #3: Building Structures 
+
 The Controller upgrade gives access to some new structures: walls, ramparts, and extensions. We’ll discuss walls and ramparts in the next Tutorial section, for now let’s talk about extensions.
 
 Extensions are required to build larger creeps. A creep with only one body part of one type works poorly. Giving it several WORKs will make him work proportionally faster.
@@ -161,6 +162,21 @@ The enemy creep is eliminated and our colony can breathe easy. However, the inva
 
 */
 
+/*
+
+All the damage from the attack has been repaired!
+
+Congratulations, you have completed the Tutorial! Now you have enough knowledge and code to start playing in the online mode. Choose your room, found a colony, and set out on your own quest for domination in the world of Screeps!
+
+If you want to delve deeper in the subtleties of the game or have any questions, please feel free to refer to:
+
+Documentation
+Community forums
+Slack chat
+Have fun scripting!
+
+*/
+
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
@@ -168,14 +184,15 @@ var roleBuilder = require("role.builder");
 module.exports.loop = function() {
   var tower = Game.getObjectById("6222b1f9532e9deb3b312fa0");
   if (tower) {
-
-    var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-      filter: (structure) => structure.hits < structure.hitsMax
-    });
-    if(closestDamagedStructure) {
+    var closestDamagedStructure = tower.pos.findClosestByRange(
+      FIND_STRUCTURES,
+      {
+        filter: structure => structure.hits < structure.hitsMax
+      }
+    );
+    if (closestDamagedStructure) {
       tower.repair(closestDamagedStructure);
     }
-
 
     var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
     if (closestHostile) {

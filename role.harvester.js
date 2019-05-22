@@ -1,4 +1,4 @@
-var roleHarvester = {
+.jsvar roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
