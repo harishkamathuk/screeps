@@ -34,13 +34,19 @@ module.exports.loop = function () {
     // _.sum will count the number of properties in Game.creeps filtered by the
     //  arrow function, which checks for the creep being a harvester
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role === 'harvester');
+    var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role === 'upgrader');
     var name = undefined;
+
+
+    console.log("We need " + minimumNumberOfHarvesters + " and we have " + numberOfHarvesters + " harvesters in service.")
+    console.log("We have " + numberOfUpgraders + " upgraders in service.")
 
     // if not enough harvesters
     if (numberOfHarvesters < minimumNumberOfHarvesters) {
         // try to spawn one
         // name = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,MOVE], undefined,
         //     { role: 'harvester', working: false});
+        console.log("Spawning a harvester now ... ")
         name = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], undefined,
             { role: 'harvester', working: false});
     }
@@ -50,6 +56,7 @@ module.exports.loop = function () {
         //  more sense to have two move parts because they have to travel further
         // name = Game.spawns.Spawn1.createCreep([WORK,CARRY,MOVE,MOVE], undefined,
         //     { role: 'upgrader', working: false});
+        console.log("Spawning a upgrader now ... ")
         name = Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], undefined,
             { role: 'upgrader', working: false});
     }
