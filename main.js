@@ -6,7 +6,7 @@ module.exports.loop = function () {
     // check for memory entries of died creeps by iterating over Memory.creeps
     for (let name in Memory.creeps) {
         // and checking if the creep is still alive
-        if (Game.creeps[name] == undefined) {
+        if (Game.creeps[name] === undefined) {
             // if not, delete the memory entry
             delete Memory.creeps[name];
         }
@@ -18,11 +18,11 @@ module.exports.loop = function () {
         var creep = Game.creeps[name];
 
         // if creep is harvester, call harvester script
-        if (creep.memory.role == 'harvester') {
+        if (creep.memory.role === 'harvester') {
             roleHarvester.run(creep);
         }
         // if creep is upgrader, call upgrader script
-        else if (creep.memory.role == 'upgrader') {
+        else if (creep.memory.role === 'upgrader') {
             roleUpgrader.run(creep);
         }
     }
@@ -31,20 +31,24 @@ module.exports.loop = function () {
     var minimumNumberOfHarvesters = 10;
     // _.sum will count the number of properties in Game.creeps filtered by the
     //  arrow function, which checks for the creep being a harvester
-    var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
+    var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role === 'harvester');
     var name = undefined;
 
     // if not enough harvesters
     if (numberOfHarvesters < minimumNumberOfHarvesters) {
         // try to spawn one
-        name = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,MOVE], undefined,
+        // name = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,MOVE], undefined,
+        //     { role: 'harvester', working: false});
+        name = Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], undefined,
             { role: 'harvester', working: false});
     }
     else {
         // else try to spawn an upgrader
         // small change from what you saw in the video: for upgraders it makes
         //  more sense to have two move parts because they have to travel further
-        name = Game.spawns.Spawn1.createCreep([WORK,CARRY,MOVE,MOVE], undefined,
+        // name = Game.spawns.Spawn1.createCreep([WORK,CARRY,MOVE,MOVE], undefined,
+        //     { role: 'upgrader', working: false});
+        name = Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], undefined,
             { role: 'upgrader', working: false});
     }
 
