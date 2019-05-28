@@ -81,8 +81,6 @@ module.exports.loop = function () {
     }
 
     // checking the status of the spawning process here ...
-    console.log("Are we spawning: " + Game.spawns["Spawn1"].spawning)
-
     if (Game.spawns["Spawn1"].spawning) {
 
         var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
