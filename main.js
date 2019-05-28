@@ -18,7 +18,6 @@ module.exports.loop = function () {
     for (let name in Game.creeps) {
         // get the creep object
         var creep = Game.creeps[name];
-        console.log("Check if creep :" + name + " is doing: " + creep.memory.role);
 
         // if creep is harvester, call harvester script
         if (creep.memory.role == 'harvester') {
@@ -28,6 +27,7 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
+        console.log("Creep " + name + " is a " + creep.memory.role + " and doing its job!");
     }
 
     // goal: have 10 harvesters and as many upgraders as possible
@@ -75,6 +75,7 @@ module.exports.loop = function () {
 
         if (Game.spawns["Spawn1"].spawning) {
             var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
+            console.log("Spawning creep " + spawningCreep.name + " as a " + spawningCreep.memory.role)
             Game.spawns["Spawn1"].room.visual.text(
                 "Spawning: " + spawningCreep.memory.role,
                 Game.spawns["Spawn1"].pos.x + 1,
