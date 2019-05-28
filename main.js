@@ -66,7 +66,7 @@ module.exports.loop = function () {
             // else try to spawn an upgrader
             // small change from what you saw in the video: for upgraders it makes
             //  more sense to have two move parts because they have to travel further
-            newName = 'Harvester' + newName;
+            newName = 'Upgrader' + newName;
             console.log("Spawning a upgrader: " + newName);
             Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], newName, {
                 memory: {role: 'upgrader', working: false}
