@@ -108,7 +108,7 @@ StructureSpawn.prototype =
      * @type {function}
      *
      * @param {Array<string>} body An array describing the new creep’s body. Should contain 1 to 50 elements.
-     * @param {string} name The name of a new creep. It must be a unique creep name, i.e. the Game.creeps object should not contain another creep with the same name (hash key).
+     * @param {null} name The name of a new creep. It must be a unique creep name, i.e. the Game.creeps object should not contain another creep with the same name (hash key).
      * @param {Object} [opts] An object with additional options for the spawning process.
      * @param {*} [opts.memory] Memory of the new creep. If provided, it will be immediately stored into Memory.creeps[name].
      * @param {Array<StructureSpawn|StructureExtension>} [opts.energyStructures] Array of spawns/extensions from which to draw energy for the spawning process. Structures will be used according to the array order.

@@ -9,6 +9,7 @@ module.exports.loop = function () {
         if (Game.creeps[name] === undefined) {
             // if not, delete the memory entry
             delete Memory.creeps[name];
+            console.log("Cleaning memory for creep:" + name);
         }
     }
 
@@ -16,6 +17,7 @@ module.exports.loop = function () {
     for (let name in Game.creeps) {
         // get the creep object
         var creep = Game.creeps[name];
+        console.log("Check if creep :" + name + " is doing: " + creep.memory.role);
 
         // if creep is harvester, call harvester script
         if (creep.memory.role === 'harvester') {

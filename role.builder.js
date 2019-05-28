@@ -1,7 +1,7 @@
 var roleBuilder = {
+	run: function(creep) {
 
-    /** @param {Creep} creep **/
-    run: function(creep) {
+		console.log("Creep " + creep.name + " is building...")
 
 	    if(creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
