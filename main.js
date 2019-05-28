@@ -6,7 +6,7 @@ module.exports.loop = function () {
     // check for memory entries of died creeps by iterating over Memory.creeps
     for (let name in Memory.creeps) {
         // and checking if the creep is still alive
-        if (Game.creeps[name] === undefined) {
+        if (Game.creeps[name] == undefined) {
             // if not, delete the memory entry
             delete Memory.creeps[name];
             console.log("Cleaning memory for creep:" + name);
@@ -20,11 +20,11 @@ module.exports.loop = function () {
         console.log("Check if creep :" + name + " is doing: " + creep.memory.role);
 
         // if creep is harvester, call harvester script
-        if (creep.memory.role === 'harvester') {
+        if (creep.memory.role == 'harvester') {
             roleHarvester.run(creep);
         }
         // if creep is upgrader, call upgrader script
-        else if (creep.memory.role === 'upgrader') {
+        else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
     }
@@ -33,8 +33,8 @@ module.exports.loop = function () {
     var minimumNumberOfHarvesters = 10;
     // _.sum will count the number of properties in Game.creeps filtered by the
     //  arrow function, which checks for the creep being a harvester
-    var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role === 'harvester');
-    var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role === 'upgrader');
+    var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
+    var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
     var name = undefined;
 
 
