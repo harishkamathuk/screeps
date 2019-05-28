@@ -55,7 +55,7 @@ module.exports.loop = function () {
         // if not enough harvesters
         if (numberOfHarvesters < minimumNumberOfHarvesters) {
             // try to spawn one
-            newName = 'Harvester' + newName;
+            newName = 'HRV' + newName;
             console.log("Spawning a harvester: " + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, {
                 memory: { role: 'harvester', working: false}
@@ -64,9 +64,7 @@ module.exports.loop = function () {
         }
         else {
             // else try to spawn an upgrader
-            // small change from what you saw in the video: for upgraders it makes
-            //  more sense to have two move parts because they have to travel further
-            newName = 'Upgrader' + newName;
+            newName = 'UPG' + newName;
             console.log("Spawning a upgrader: " + newName);
             Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], newName, {
                 memory: {role: 'upgrader', working: false}
