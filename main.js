@@ -89,6 +89,13 @@ module.exports.loop = function () {
         console.log("role: " + spawningCreep.memory.role);
 
         var rV = Game.spawns["Spawn1"].room.visual;
+
+        console.log("Processing " + rV.roomName + ": ");
+        console.log("Role: " + spawningCreep.memory.role);
+        console.log("Role: " + spawningCreep.memory.role);
+        console.log("X co-ords: " + Game.spawns["Spawn1"].pos.x + 1);
+        console.log("Y co-ords: " + Game.spawns["Spawn1"].pos.y);
+
         rV.text("🚧 Spawning a " + spawningCreep.memory.role,
             Game.spawns["Spawn1"].pos.x + 1,
             Game.spawns["Spawn1"].pos.y,
