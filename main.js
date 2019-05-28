@@ -27,7 +27,7 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        console.log("Creep " + name + " is a " + creep.memory.role + " and doing its job!");
+        // console.log("Creep " + name + " is a " + creep.memory.role + " and doing its job!");
     }
 
     // goal: have 10 harvesters and as many upgraders as possible
@@ -37,32 +37,33 @@ module.exports.loop = function () {
     var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
     var numberOfUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'upgrader');
 
-    console.log("We need " + minimumNumberOfHarvesters + " and we have "
-        + numberOfHarvesters + " harvesters in service.");
-    console.log("We have " + numberOfUpgraders + " upgraders in service.");
+    console.log("Harvesters needed: " + minimumNumberOfHarvesters);
+    console.log("Harvesters in service: " + numberOfHarvesters);
+    console.log("Upgraders in service: " + numberOfUpgraders);
 
     // first check if we can spawn a new creep...
-    var newName = 'WorkerCheck';
+    var newName = 'CreepCheck';
     var canSpawn = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, MOVE],
         newName, { dryRun: true });
 
     // ... if we can ...
-    if( canSpawn === OK) {
+    if(canSpawn === OK) {
 
         // ... generate a new custom suffix for the name of the new creep ...
         newName = Game.time;
 
         // if not enough harvesters
         if (numberOfHarvesters < minimumNumberOfHarvesters) {
+
             // try to spawn one
             newName = 'HRV' + newName;
             console.log("Spawning a harvester: " + newName);
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, {
                 memory: { role: 'harvester', working: false}
             });
-
         }
         else {
+
             // else try to spawn an upgrader
             newName = 'UPG' + newName;
             console.log("Spawning a upgrader: " + newName);
@@ -70,6 +71,8 @@ module.exports.loop = function () {
                 memory: {role: 'upgrader', working: false}
             });
         }
+
+        console.log("Are we spawning: " + Game.spawns["Spawn1"].spawning)
 
         if (Game.spawns["Spawn1"].spawning) {
             var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
