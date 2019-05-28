@@ -1,11 +1,17 @@
 // import modules
-var roleHarvester = require("role.harvester");
-var roleUpgrader = require("role.upgrader");
-// var roleBuilder = require("role.builder");
-
-// noinspection JSUnresolvedVariable
+var roleHarvester = require('role.harvester');
+var roleUpgrader = require('role.upgrader');
 
 module.exports.loop = function () {
+    // check for memory entries of died creeps by iterating over Memory.creeps
+    for (let name in Memory.creeps) {
+        // and checking if the creep is still alive
+        if (Game.creeps[name] == undefined) {
+            // if not, delete the memory entry
+            delete Memory.creeps[name];
+        }
+    }
+
     // for every creep name in Game.creeps
     for (let name in Game.creeps) {
         // get the creep object
@@ -20,67 +26,31 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         }
     }
-};
 
-    // var tower = Game.getObjectById("6222b1f9532e9deb3b312fa0");
-    // if (tower) {
-    //   var closestDamagedStructure = tower.pos.findClosestByRange(
-    //     FIND_STRUCTURES,
-    //     {
-    //       filter: structure => structure.hits < structure.hitsMax
-    //     }
-    //   );
-    //   if (closestDamagedStructure) {
-    //     tower.repair(closestDamagedStructure);
-    //   }
-    //
-    //   var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-    //   if (closestHostile) {
-    //     tower.attack(closestHostile);
-    //   }
-    // }
-    //
-    // for (var name in Memory.creeps) {
-    //   if (!Game.creeps[name]) {
-    //     delete Memory.creeps[name];
-    //     console.log("Clearing non-existing creep memory:", name);
-    //   }
-    // }
-    //
-    // var harvesters = _.filter(
-    //   Game.creeps,
-    //   creep => creep.memory.role == "harvester"
-    // );
-    // console.log("Harvesters: " + harvesters.length);
-    //
-    // if (harvesters.length < 2) {
-    //   var newName = "Harvester" + Game.time;
-    //   console.log("Spawning new harvester: " + newName);
-    //   Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], newName, {
-    //     memory: { role: "harvester" }
-    //   });
-    // }
-    //
-    // if (Game.spawns["Spawn1"].spawning) {
-    //   var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
-    //   Game.spawns["Spawn1"].room.visual.text(
-    //     "Spawning..." + spawningCreep.memory.role,
-    //     Game.spawns["Spawn1"].pos.x + 1,
-    //     Game.spawns["Spawn1"].pos.y,
-    //     { align: "left", opacity: 0.8 }
-    //   );
-    // }
-    //
-    // for (var name in Game.creeps) {
-    //   var creep = Game.creeps[name];
-    //   if (creep.memory.role == "harvester") {
-    //     roleHarvester.run(creep);
-    //   }
-    //   if (creep.memory.role == "upgrader") {
-    //     roleUpgrader.run(creep);
-    //   }
-    //   if (creep.memory.role == "builder") {
-    //     roleBuilder.run(creep);
-    //   }
-    // }
+    // goal: have 10 harvesters and as many upgraders as possible
+    var minimumNumberOfHarvesters = 10;
+    // _.sum will count the number of properties in Game.creeps filtered by the
+    //  arrow function, which checks for the creep being a harvester
+    var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');
+    var name = undefined;
+
+    // if not enough harvesters
+    if (numberOfHarvesters < minimumNumberOfHarvesters) {
+        // try to spawn one
+        name = Game.spawns.Spawn1.createCreep([WORK,WORK,CARRY,MOVE], undefined,
+            { role: 'harvester', working: false});
+    }
+    else {
+        // else try to spawn an upgrader
+        // small change from what you saw in the video: for upgraders it makes
+        //  more sense to have two move parts because they have to travel further
+        name = Game.spawns.Spawn1.createCreep([WORK,CARRY,MOVE,MOVE], undefined,
+            { role: 'upgrader', working: false});
+    }
+
+    // print name to console if spawning was a success
+    // name > 0 would not work since string > 0 returns false
+    if (!(name < 0)) {
+        console.log("Spawned new creep: " + name);
+    }
 };
