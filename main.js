@@ -81,25 +81,21 @@ module.exports.loop = function () {
     }
 
     // checking the status of the spawning process here ...
-    if (Game.spawns["Spawn1"].spawning) { // are we spawning a creep...
+    console.log("Are we spawning: " + Game.spawns["Spawn1"].spawning)
+
+    if (Game.spawns["Spawn1"].spawning) {
 
         var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
 
-        console.log("Spawning creep: " + spawningCreep.name);
-        console.log("role: " + spawningCreep.memory.role);
+        console.log("Spawning creep: " + spawningCreep.name)
 
-        var rV = Game.spawns["Spawn1"].room.visual;
-
-        console.log("Processing " + rV.roomName + ": ");
-        console.log("Role: " + spawningCreep.memory.role);
-        console.log("Role: " + spawningCreep.memory.role);
-        console.log("X co-ords: " + Game.spawns["Spawn1"].pos.x + 1);
-        console.log("Y co-ords: " + Game.spawns["Spawn1"].pos.y);
-
-        rV.text("🚧 Spawning a " + spawningCreep.memory.role,
-            Game.spawns["Spawn1"].pos.x + 1,
-            Game.spawns["Spawn1"].pos.y,
+        Game.spawns["Spawn1"].room.visual.text(
+            "Spawning: " + spawningCreep.memory.role,
+            Number(Game.spawns["Spawn1"].pos.x) + 1,
+            Number(Game.spawns["Spawn1"].pos.y),
             { align: "left", opacity: 0.8 }
         );
     }
+
+
 };
