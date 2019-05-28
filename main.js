@@ -57,8 +57,10 @@ module.exports.loop = function () {
             // try to spawn one
             newName = 'Harvester' + newName;
             console.log("Spawning a harvester: " + newName);
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName,
-                { role: 'harvester', working: false});
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE], newName, {
+                memory: { role: 'harvester', working: false}
+            });
+
         }
         else {
             // else try to spawn an upgrader
@@ -66,8 +68,9 @@ module.exports.loop = function () {
             //  more sense to have two move parts because they have to travel further
             newName = 'Harvester' + newName;
             console.log("Spawning a upgrader: " + newName);
-            Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], newName,
-                { role: 'upgrader', working: false});
+            Game.spawns['Spawn1'].spawnCreep([MOVE, MOVE, CARRY, WORK], newName, {
+                memory: {role: 'upgrader', working: false}
+            });
         }
 
         if (Game.spawns["Spawn1"].spawning) {
