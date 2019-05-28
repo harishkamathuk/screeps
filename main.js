@@ -89,7 +89,7 @@ module.exports.loop = function () {
         console.log("role: " + spawningCreep.memory.role);
 
         Game.spawns["Spawn1"].room.visual.text(
-            "Spawning a " + spawningCreep.memory.role,
+            "🚧 Spawning a " + spawningCreep.memory.role,
             Game.spawns["Spawn1"].pos.x + 1,
             Game.spawns["Spawn1"].pos.y,
             { align: "left", opacity: 0.8 }
