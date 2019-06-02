@@ -52,10 +52,13 @@ module.exports.loop = function () {
   var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
 
 
-  // console.log("Harvesters in service: " + numberOfHarvesters);
-  // console.log("Upgraders in service: " + numberOfUpgraders);
-  // console.log("Builders in service: " + numberOfBuilders);
-  // console.log("Repairers in service: " + numberOfRepairers);
+  console.log("Game status: " +
+    "{[H:" + numberOfHarvesters + "], " +
+    "[U:" + numberOfUpgraders + "], " +
+    "[B:" + numberOfBuilders + "], " +
+    "[R:" + numberOfRepairers + "], " +
+    "}"
+  );
 
   // auto-spawning code starts here ...
   var energyCapacity = Game.spawns['Spawn1'].room.energyCapacityAvailable;
