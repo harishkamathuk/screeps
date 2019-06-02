@@ -24,15 +24,17 @@ var roleHarvester = {
               // the second argument for findClosestByPath is an object which takes
               // a property called filter which can be a function
               // we use the arrow operator to define it
-              filter: (s) => s.energy < s.energyCapacity
+              filter: (s) => ((s.structureType == STRUCTURE_SPAWN ||
+                               s.structureType == STRUCTURE_EXTENSION) &&
+                               s.energy < s.energyCapacity)
             });
             // if we find one ...
             // transfer energy to it if it is in range or ...
-            console.log("Structure: " + structure + ". Energy available: "
-              + structure.energy + ". Energy capacity:" + structure.energyCapacity);
-            if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                // move towards the structure
-                creep.moveTo(structure, {visualizePathStyle: {stroke: '#ff0000'}});
+            if(structure != undefined) {
+              if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                  // move towards the structure
+                  creep.moveTo(structure, {visualizePathStyle: {stroke: '#ff0000'}});
+              }
             }
         }
         // if creep is supposed to harvest energy from source
