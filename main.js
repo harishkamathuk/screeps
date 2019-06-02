@@ -40,10 +40,10 @@ module.exports.loop = function () {
   var MINIMUM_NUMBER_OF_BUILDERS = 10;
   var MINIMUM_NUMBER_OF_REPAIRERS = 2;
 
-  console.log("Harvesters needed: " + MINIMUM_NUMBER_OF_HARVESTERS);
-  console.log("Builders needed: " + MINIMUM_NUMBER_OF_BUILDERS);
-  console.log("Upgraders needed: " + MINIMUM_NUMBER_OF_UPGRADERS);
-  console.log("Repairer needed: " + MINIMUM_NUMBER_OF_REPAIRERS);
+  // console.log("Harvesters needed: " + MINIMUM_NUMBER_OF_HARVESTERS);
+  // console.log("Builders needed: " + MINIMUM_NUMBER_OF_BUILDERS);
+  // console.log("Upgraders needed: " + MINIMUM_NUMBER_OF_UPGRADERS);
+  // console.log("Repairer needed: " + MINIMUM_NUMBER_OF_REPAIRERS);
 
   // state of play at the beginning of each tick
   var numberOfHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvester');

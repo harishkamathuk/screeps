@@ -28,6 +28,8 @@ var roleHarvester = {
             });
             // if we find one ...
             // transfer energy to it if it is in range or ...
+            console.log("Structure at co-ordinates: x -> "
+              + structure.pos.x + ", y -> " + structure.pos.y);
             if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 // move towards the structure
                 creep.moveTo(structure, {visualizePathStyle: {stroke: '#ff0000'}});
