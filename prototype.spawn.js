@@ -23,10 +23,10 @@ module.exports = function() {
       var canSpawn = Game.spawns['Spawn1'].spawnCreep(
           body,
           newName,
-          { dryRun: true }
+            { dryRun: true }
           ); // check if we can spawn a new creep...
 
-      // ... if we cannot ...
+      // ... if we can ...
       if(canSpawn === OK) {
 
         // ... generate a new custom suffix for the name of the new creep ...
@@ -41,8 +41,8 @@ module.exports = function() {
           newName = 'UPG' + newName;
         }
 
-        console.log("Energy Capacity: " + energy +
-          ". Spawning a new " + roleName + ": " + newName);
+        console.log("Spawning a new " + roleName + " with energy [" + energy +
+          "] ": " + newName);
         return this.spawnCreep(
         body,
         newName,

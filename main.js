@@ -36,8 +36,8 @@ module.exports.loop = function () {
 
   // some constants
   var MINIMUM_NUMBER_OF_HARVESTERS = 10;
-  var MINIMUM_NUMBER_OF_UPGRADERS = 5;
-  var MINIMUM_NUMBER_OF_BUILDERS = 10;
+  var MINIMUM_NUMBER_OF_UPGRADERS = 2;
+  var MINIMUM_NUMBER_OF_BUILDERS = 2;
   var MINIMUM_NUMBER_OF_REPAIRERS = 2;
 
   // console.log("Harvesters needed: " + MINIMUM_NUMBER_OF_HARVESTERS);
@@ -52,15 +52,14 @@ module.exports.loop = function () {
   var numberOfRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repairer');
 
 
-  console.log("Harvesters in service: " + numberOfHarvesters);
-  console.log("Upgraders in service: " + numberOfUpgraders);
-  console.log("Builders in service: " + numberOfBuilders);
-  console.log("Repairers in service: " + numberOfRepairers);
+  // console.log("Harvesters in service: " + numberOfHarvesters);
+  // console.log("Upgraders in service: " + numberOfUpgraders);
+  // console.log("Builders in service: " + numberOfBuilders);
+  // console.log("Repairers in service: " + numberOfRepairers);
 
   // auto-spawning code starts here ...
   var energyCapacity = Game.spawns['Spawn1'].room.energyCapacityAvailable;
   var energyAvailable = Game.spawns['Spawn1'].room.energyAvailable;
-  var canSpawn = -999; // CUSTOM_ERROR_CODE
 
   if (numberOfHarvesters < MINIMUM_NUMBER_OF_HARVESTERS) { // if not enough harvesters
 
@@ -70,34 +69,31 @@ module.exports.loop = function () {
     'harvester') !== OK && numberOfHarvesters === 0) {
 
       // create a harvest with available energy
-      canSpawn = Game.spawns['Spawn1'].createCustomCreep(energyAvailable,
+      Game.spawns['Spawn1'].createCustomCreep(energyAvailable,
       'harvester');
     }
   } else if (numberOfUpgraders < MINIMUM_NUMBER_OF_UPGRADERS) { // if not enough upgraders
 
-    canSpawn = Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-    'upgrader')
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+      'upgrader')
   } else if (numberOfRepairers < MINIMUM_NUMBER_OF_REPAIRERS) { // if not enough repairers
 
-    canSpawn = Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-    'repairer')
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+      'repairer')
   } else if (numberOfBuilders < MINIMUM_NUMBER_OF_BUILDERS) { // if not enough builders
 
-    canSpawn = Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-    'builder')
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+      'builder')
   } else { // else try to spawn an builder
 
-    canSpawn = Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-    'builder')
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+      'builder')
   }
-
-  console.log("Value of canSpawn = " + canSpawn);
 
   // checking the status of the spawning process here ...
   if (Game.spawns["Spawn1"].spawning) {
 
       var spawningCreep = Game.creeps[Game.spawns["Spawn1"].spawning.name];
-      console.log("Spawning creep: " + spawningCreep.name)
       Game.spawns["Spawn1"].room.visual.text(
           "Spawning: " + spawningCreep.memory.role,
           Number(Game.spawns["Spawn1"].pos.x) + 1,
