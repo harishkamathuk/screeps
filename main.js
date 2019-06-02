@@ -62,32 +62,32 @@ module.exports.loop = function () {
   var energyAvailable = Game.spawns['Spawn1'].room.energyAvailable;
 
   if (numberOfHarvesters < MINIMUM_NUMBER_OF_HARVESTERS) { // if not enough harvesters
-          // unable to create a creep with maximum available capacity
-          // and we have no more harvesters ...
-          if(Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-            'harvester') !== OK && numberOfHarvesters === 0) {
 
-              // create a harvest with available energy
-              Game.spawns['Spawn1'].createCustomCreep(energyAvailable,
-                'harvester');
-            }
-      }
-      else if (numberOfUpgraders < MINIMUM_NUMBER_OF_UPGRADERS) { // if not enough upgraders
-        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-          'upgrader')
-      }
-      else if (numberOfRepairers < MINIMUM_NUMBER_OF_REPAIRERS) { // if not enough repairers
-        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-          'repairer')
-      }
-      else if (numberOfBuilders < MINIMUM_NUMBER_OF_BUILDERS) { // if not enough builders
-        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-          'builder')
-      }
-      else { // else try to spawn an builder
-        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
-          'builder')
-      }
+    // unable to create a creep with maximum available capacity
+    // and we have no more harvesters ...
+    if(Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+    'harvester') !== OK && numberOfHarvesters === 0) {
+
+      // create a harvest with available energy
+      Game.spawns['Spawn1'].createCustomCreep(energyAvailable,
+      'harvester');
+    }
+  } else if (numberOfUpgraders < MINIMUM_NUMBER_OF_UPGRADERS) { // if not enough upgraders
+
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+    'upgrader')
+  } else if (numberOfRepairers < MINIMUM_NUMBER_OF_REPAIRERS) { // if not enough repairers
+
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+    'repairer')
+  } else if (numberOfBuilders < MINIMUM_NUMBER_OF_BUILDERS) { // if not enough builders
+
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+    'builder')
+  } else { // else try to spawn an builder
+
+    Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+    'builder')
   }
 
   // checking the status of the spawning process here ...
