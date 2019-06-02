@@ -42,7 +42,7 @@ module.exports = function() {
         }
 
         console.log("Spawning a new " + roleName + " with energy [" + energy +
-          "] ": " + newName);
+          "]: " + newName);
         return this.spawnCreep(
         body,
         newName,
