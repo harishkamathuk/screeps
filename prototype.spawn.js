@@ -19,24 +19,37 @@ module.exports = function() {
         body.push(MOVE);
       }
 
-      // ... generate a new custom suffix for the name of the new creep ...
-      newName = Game.time;
-      if(roleName === 'harvester') {
-        newName = 'HRV' + newName;
-      } else if(roleName === 'builder'){
-        newName = 'BLD' + newName;
-      } else if(roleName === 'repairer'){
-        newName = 'REP' + newName;
-      }  else if(roleName === 'upgrader'){
-        newName = 'UPG' + newName;
-      }
+      var newName = 'CreepCheck';
+      var canSpawn = Game.spawns['Spawn1'].spawnCreep(
+          body,
+          newName,
+          { dryRun: true }
+          ); // check if we can spawn a new creep...
 
-      console.log("Spawning a new " + roleName + ": " + newName);
-      return this.spawnCreep(
+      // ... if we cannot ...
+      if(canSpawn === OK) {
+
+        // ... generate a new custom suffix for the name of the new creep ...
+        newName = Game.time;
+        if(roleName === 'harvester') {
+          newName = 'HRV' + newName;
+        } else if(roleName === 'builder'){
+          newName = 'BLD' + newName;
+        } else if(roleName === 'repairer'){
+          newName = 'REP' + newName;
+        }  else if(roleName === 'upgrader'){
+          newName = 'UPG' + newName;
+        }
+
+        console.log("Spawning a new " + roleName + ": " + newName);
+        return this.spawnCreep(
         body,
         newName,
         {
             memory: { role: roleName, working: false}
         });
-    }
+      } else {
+        return canSpawn
+      }
+    };
 };

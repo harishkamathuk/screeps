@@ -60,79 +60,34 @@ module.exports.loop = function () {
   // auto-spawning code starts here ...
   var energyCapacity = Game.spawns['Spawn1'].room.energyCapacityAvailable;
   var energyAvailable = Game.spawns['Spawn1'].room.energyAvailable;
-  console.log("Energy capacity: " + energyCapacity);
-  console.log("Energy available: " + energyAvailable);
 
-  var newName = 'CreepCheck';
+  if (numberOfHarvesters < MINIMUM_NUMBER_OF_HARVESTERS) { // if not enough harvesters
+          // unable to create a creep with maximum available capacity
+          // and we have no more harvesters ...
+          if(Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+            'harvester') !== OK && numberOfHarvesters === 0) {
 
-  var canSpawn = Game.spawns['Spawn1'].spawnCreep(
-      [WORK, WORK, CARRY, MOVE],
-      newName,
-      { dryRun: true }
-      ); // check if we can spawn a new creep...
-
-  // ... if we can ...
-  if(canSpawn === OK) {
-
-      // ... generate a new custom suffix for the name of the new creep ...
-      newName = Game.time;
-
-      if (numberOfHarvesters < MINIMUM_NUMBER_OF_HARVESTERS) { // if not enough harvesters
-
-          newName = 'HRV' + newName; // try to spawn one
-          console.log("Spawning a harvester: " + newName);
-          Game.spawns['Spawn1'].spawnCreep(
-              [WORK,WORK,CARRY,MOVE],
-              newName,
-              {
-                  memory: { role: 'harvester', working: false}
-              });
+              // create a harvest with available energy
+              Game.spawns['Spawn1'].createCustomCreep(energyAvailable,
+                'harvester');
+            }
       }
       else if (numberOfUpgraders < MINIMUM_NUMBER_OF_UPGRADERS) { // if not enough upgraders
-
-          newName = 'UPG' + newName; // try to spawn one
-          console.log("Spawning a upgrader: " + newName);
-          Game.spawns['Spawn1'].spawnCreep(
-              [MOVE,MOVE,CARRY,WORK],
-              newName,
-              {
-                  memory: { role: 'upgrader', working: false}
-              });
+        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+          'upgrader')
       }
       else if (numberOfRepairers < MINIMUM_NUMBER_OF_REPAIRERS) { // if not enough repairers
-
-          newName = 'REP' + newName; // try to spawn one
-          console.log("Spawning a repairer: " + newName);
-          Game.spawns['Spawn1'].spawnCreep(
-              [WORK,WORK,CARRY,MOVE],
-              newName,
-              {
-                  memory: { role: 'repairer', working: false}
-              });
+        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+          'repairer')
       }
       else if (numberOfBuilders < MINIMUM_NUMBER_OF_BUILDERS) { // if not enough builders
-
-          newName = 'BLD' + newName; // try to spawn one
-          console.log("Spawning a builder: " + newName);
-          Game.spawns['Spawn1'].spawnCreep(
-              [WORK,WORK,CARRY,MOVE],
-              newName,
-              {
-                  memory: { role: 'builder', working: false}
-              });
+        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+          'builder')
       }
       else { // else try to spawn an builder
-
-          newName = 'BLD' + newName;
-          console.log("Spawning a builder: " + newName);
-          Game.spawns['Spawn1'].spawnCreep(
-              [MOVE, MOVE, CARRY, WORK],
-              newName,
-              {
-                  memory: {role: 'builder', working: false}
-              });
+        Game.spawns['Spawn1'].createCustomCreep(energyCapacity,
+          'builder')
       }
-
   }
 
   // checking the status of the spawning process here ...
