@@ -41,7 +41,8 @@ module.exports = function() {
           newName = 'UPG' + newName;
         }
 
-        console.log("Spawning a new " + roleName + ": " + newName);
+        console.log("Energy Capacity: " + energy +
+          ". Spawning a new " + roleName + ": " + newName);
         return this.spawnCreep(
         body,
         newName,
