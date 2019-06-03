@@ -13,7 +13,7 @@ var roleHarvester = {
         else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
             // switch state
             creep.memory.working = true;
-            creep.say('deliver...');
+            creep.say('\u{1F69A} deliver');
         }
 
         // if creep is supposed to transfer energy to the spawn
