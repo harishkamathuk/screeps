@@ -61,7 +61,7 @@ module.exports.loop = function () {
     "{[H:" + numberOfHarvesters + "|" +  MINIMUM_NUMBER_OF_HARVESTERS  +  "], " +
     "[U:" + numberOfUpgraders + "|" +  MINIMUM_NUMBER_OF_UPGRADERS + "], " +
     "[B:" + numberOfBuilders + "|" +  MINIMUM_NUMBER_OF_BUILDERS  + "], " +
-    "[R:" + numberOfRepairers + "|" +  MINIMUM_NUMBER_OF_REPAIRERS  + "]" +
+    "[R:" + numberOfRepairers + "|" +  MINIMUM_NUMBER_OF_REPAIRERS  + "], " +
     "[W:" + numberOfwallRepairers + "|" +  MINIMUM_NUMBER_OF_WALL_REPAIRERS  + "]" +
     "}"
   );
