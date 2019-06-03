@@ -27,7 +27,7 @@ var roleWallRepairer = {
           var target = undefined;
 
 					// find all the walls in the room
-					var walls = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+					var walls = creep.room.find(FIND_STRUCTURES, {
               filter: (s) => s.structureType == STRUCTURE_WALL
           });
 
