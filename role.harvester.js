@@ -7,7 +7,7 @@ var roleHarvester = {
         if (creep.memory.working == true && creep.carry.energy == 0) {
             // switch state
             creep.memory.working = false;
-            creep.say('harvest...');
+            creep.say('\u{1F504} harvest');
         }
         // if creep is harvesting energy but is full
         else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
