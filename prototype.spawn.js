@@ -39,6 +39,8 @@ module.exports = function() {
           newName = 'REP' + newName;
         }  else if(roleName === 'upgrader'){
           newName = 'UPG' + newName;
+        } else if(roleName === 'wall_repairer'){
+          newName = 'WRP' + newName;
         }
 
         console.log("Spawning a new " + roleName + " with energy [" + energy +
