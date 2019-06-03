@@ -36,7 +36,7 @@ module.exports.loop = function () {
 
   // some constants
   var MINIMUM_NUMBER_OF_HARVESTERS = 10;
-  var MINIMUM_NUMBER_OF_UPGRADERS = 2;
+  var MINIMUM_NUMBER_OF_UPGRADERS = 3;
   var MINIMUM_NUMBER_OF_BUILDERS = 2;
   var MINIMUM_NUMBER_OF_REPAIRERS = 2;
 
@@ -53,10 +53,10 @@ module.exports.loop = function () {
 
 
   console.log("Game status: " +
-    "{[H:" + numberOfHarvesters + "], " +
-    "[U:" + numberOfUpgraders + "], " +
-    "[B:" + numberOfBuilders + "], " +
-    "[R:" + numberOfRepairers + "], " +
+    "{[H:" + numberOfHarvesters + "|" +  MINIMUM_NUMBER_OF_HARVESTERS  +  "], " +
+    "[U:" + numberOfUpgraders + "|" +  MINIMUM_NUMBER_OF_UPGRADERS + "], " +
+    "[B:" + numberOfBuilders + "|" +  MINIMUM_NUMBER_OF_BUILDERS  + "], " +
+    "[R:" + numberOfRepairers + "|" +  MINIMUM_NUMBER_OF_REPAIRERS  + "]" +
     "}"
   );
 
